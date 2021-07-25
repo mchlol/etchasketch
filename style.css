@@ -8,10 +8,69 @@ body {
     font-family:'Courier New', Courier, monospace;
 }
 
-#grid {
-    border: 1px solid black;
+a {
+    text-decoration: none;
+    color: slategray;
 }
 
-.cell {
-    background-color: silver;
+a:hover {
+    color: black;
+}
+
+header {
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+}
+
+main {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#controls {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#grid-container {
+    border: 1px solid black;
+    background-color: lightgray;
+    margin: 10px;
+    padding: 0px;
+    min-height: 400px;
+    width: 400px;
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+    grid-gap: 1px;
+}
+
+.cell { 
+    background-color: white;
+}
+
+#credit {
+    padding-top: 5px;
+    font-size: 0.9em;
+}
+
+button {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+#clear-grid {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.black {
+    background-color: black;
 }
