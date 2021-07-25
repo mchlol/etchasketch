@@ -8,8 +8,19 @@ body {
     font-family:'Courier New', Courier, monospace;
 }
 
+a {
+    text-decoration: none;
+    color: slategray;
+}
+
+a:hover {
+    color:darkslategray;
+}
+
 header {
     text-align: center;
+    margin: 0px;
+    padding: 0px;
 }
 
 main {
@@ -21,18 +32,30 @@ main {
 
 #controls {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 #grid-container {
     border: 1px solid black;
-    margin: 25px;
+    background-color: lightgray;
+    margin: 10px;
     padding: 0px;
+    min-height: 400px;
+    width: 400px;
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+    grid-gap: 1px;
+    /* justify-items: center; */
+    /* align-items: center; */
 }
 
-.cell { /* for now size is locked to class */
-    background-color: silver;
-    border: 1px solid dimgray;
-    height: 15px;
-    width: 15px;
+
+.cell { 
+    background-color: white;
+}
+
+#credit {
+    padding-top: 5px;
+    font-size: 0.9em;
 }

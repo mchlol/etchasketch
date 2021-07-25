@@ -1,10 +1,11 @@
 /* 
 create a grid container
+on page load grid is 16 x 16
 create an input element
 create a function to add a cell to the grid
 create a function to add n cells to the grid based on input e.g. 16 rows & 16 columns
 create a function to change the class of cells when hovered
-create a function to clear the cells 
+create a function to reset cell classes
 */
 
 const grid = document.querySelector('#grid-container');
@@ -19,22 +20,34 @@ cell.textContent = "";
 grid.appendChild(cell);
 };
 
-addCell();
-addCell();
+// function to add n cells to grid
 
-// add a certain amount of cells x cells depending on user input
+// ADD N cells
+function addCells(value) {
+    for (let i = 0; i <= value; i++) {
+        addCell();
+    }
+};
 
+
+// add a certain amount of cells x cells depending on user input - change css class?
+
+// access radio button values
 const gridSize = document.querySelector("#grid-size");
 
+//
 const grid16x16 = gridSize.elements['16x16'];
-let sizeChosen = grid16x16.value;
+let sixteen = grid16x16.value;
+
 
 gridSize.addEventListener('submit', (e) => {
-    // if grid chosen is 12x12 add 144 cells 12 across 12 down
-    gridSize.elements['16x16']
+    if (sizeChosen = sixteen) {
+        addCells(16*16);
+    } else if (sizeChosen = thirtyTwo) {
+        addCells(32*32);
+    } else if (sizeChosen = sixtyFour) {
+        addCells(64*64);
+    } else {
+        return;
+    }
 });
-
-/* if (grid size chosen is 16 x 16) {
-    add cells
-
-*/
