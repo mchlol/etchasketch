@@ -16,7 +16,7 @@ a {
 a:hover {
     color: black;
 }
-
+ 
 header {
     text-align: center;
     margin: 0px;
@@ -31,8 +31,12 @@ main {
 }
 
 #controls {
+    width: 380px;
+    height: auto;
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    padding: 10px;
 }
 
 #grid-container {
@@ -53,22 +57,18 @@ main {
 }
 
 #credit {
-    padding-top: 5px;
     font-size: 0.9em;
 }
 
-button {
+button, input[type=submit] {
     background-color: white;
     color: black;
     border: 1px solid black;
     padding: 5px;
 }
 
-#clear-grid {
-    background-color: white;
-    color: black;
-    border: 1px solid black;
-    padding: 5px;
+button:hover, input[type=submit]:hover {
+    background-color: lightgray;
 }
 
 .black {

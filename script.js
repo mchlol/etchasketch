@@ -10,42 +10,39 @@ clear cells & prompt user for grid size
   container to remain at same size 
 */
 
-const grid = document.querySelector('#grid-container');
-const cell = document.createElement('div');
-cell.classList.add('cell');
-cell.textContent = "";
+const grid = document.querySelector('#grid-container'); 
 
-// add a single cell to the grid
+addCells(256);
 
-function addCell() {
-grid.appendChild(cell);
-};
-
-
-// ADD ~N CELLS
+// add cells to grid & add hover
 function addCells(value) {
-    for (let i = 0; i <= value; i++) {
-        addCell();
-    }
+    for (let i = 0; i < value; i++) {
+    let cell = document.createElement('div');
+    cell.classList.add('cell');
+    cell.textContent = ""; 
+    grid.appendChild(cell);
+
+    cell.addEventListener('mouseover', () => {
+        cell.classList.add('black');
+    });
+    
+    };
+
+    
 };
 
 // call function with value
-addCells(256);
 
 
-// hover styles 
 
-cell.addEventListener('mouseover', () => {
-    cell.classList.add('black');
-});
-
+/* 
 
 // add a certain amount of cells x cells depending on user input - change css class?
 
 // access radio button values
-const gridSize = document.querySelector("#grid-size");
+const gridSize = document.querySelector("#grid-size"); // form id
 
-// the output
+the output based on form input
 const grid16x16 = gridSize.elements['16x16'];
 let sixteen = grid16x16.value;
 
@@ -55,9 +52,10 @@ let thirtyTwo = grid32x32.value;
 const grid64x64 = gridSize.elements['64x64'];
 let sixtyFour = grid64x64.value;
 
-// change grid based on input
+// function to change grid based on input
+
 gridSize.addEventListener('submit', (e) => {
-    if (sizeChosen = sixteen) {
+    if (sizeChosen = sixteen) { //sizeChosen has not been declared
         addCells(16*16);
     } else if (sizeChosen = thirtyTwo) {
         addCells(32*32);
@@ -68,3 +66,4 @@ gridSize.addEventListener('submit', (e) => {
     }
 });
 
+*/
