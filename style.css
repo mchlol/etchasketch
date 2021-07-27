@@ -90,12 +90,21 @@ main {
     font-size: 0.9em;
 }
 
-button, input[type=submit] {
+button {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    padding: 5px;
+} 
+
+/*
+input[type=submit] {
     background-color: white;
     color: black;
     border: 1px solid black;
     padding: 5px;
 }
+*/
 
 button:hover, input[type=submit]:hover {
     background-color: lightgray;
