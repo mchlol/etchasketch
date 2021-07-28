@@ -41,9 +41,18 @@ clearBtn.addEventListener("click", function () {
     while (grid.firstChild) {
         grid.removeChild(grid.firstChild);
     }
-    // prompt input for cells to be added
+    // prompt input for number of cells to be added
     let newGrid = prompt("Enter a new grid size");
 
-    // call addCells with value
-    addCells(newGrid);
+    // call addCells with value 
+    let notice= "";
+    if (newGrid < 8 || newGrid > 64) {
+        notice = "Choose a number between 8 and 64";
+        alert(notice);
+        return notice;
+    } else {
+        multiply = newGrid * newGrid;
+        return addCells(multiply);
+    };
+    console.log(newGrid);
 });
