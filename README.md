@@ -9,3 +9,4 @@ I'm calling my project "Pixel Sketchpad" because I never had an etchasketch as a
 I've learned:<br>
 <li>More about event listeners - this project uses a click event and mouseover.</li>
 <li>Adding multiple css styles to an element at once - I did this using cssText.</li>
+<li>To use git fetch after merging a branch into main!</li>
