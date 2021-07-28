@@ -36,6 +36,13 @@ grid loads with 16 x 16 cells
 
 const clearBtn = document.querySelector('#clear-button');
 
+// change the grid columns and rows based on input
+
+function styleGrid(newNumber) {
+    grid.style.cssText = `grid-template-columns: repeat(${newNumber}, 1fr); grid-template-rows: repeat(${newNumber}, 1fr)`;
+};
+
+
 clearBtn.addEventListener("click", function () {
     // remove all the cells
     while (grid.firstChild) {
@@ -51,8 +58,9 @@ clearBtn.addEventListener("click", function () {
         alert(notice);
         return notice;
     } else {
+        styleGrid(newGrid);
         multiply = newGrid * newGrid;
         return addCells(multiply);
     };
-    console.log(newGrid);
 });
+
