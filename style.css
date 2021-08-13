@@ -61,10 +61,24 @@ main {
     grid-gap: 1px;
 }
 
-
-
-.cell { 
+.white { 
     background-color: white;
+    opacity: 1;
+}
+
+.black {
+    background-color: black;
+    opacity: 1;
+}
+
+.colour {
+    background-color: white;
+    opacity: 1;
+}
+
+.opacity {
+    background-color: black;
+    opacity: 0;
 }
 
 #credit {
@@ -89,8 +103,4 @@ input[type=submit] {
 
 button:hover, input[type=submit]:hover {
     background-color: lightgray;
-}
-
-.black {
-    background-color: black;
 }
