@@ -1,25 +1,14 @@
-/* 
-Hover over a cell to change its background to black
-  remove any existing bg class & add black bg class
-Click a button to create a new grid with user input number of cells
-  call the function to create divs & change grid template etc.
-Click a button to change the black 'pen' to random RGB
-  function to remove any existing bg class (white || black) and add random rgb background colour
-Click a button to add 10% of black on each hover
-  add existing black bg class
-  function to add a hover counter
-  loop to change opacity cssText of black bg class 
-    OR div.style.opacity = 0.1
-    10% black === opacity: 0.1, 100% black === opacity: 1;
-
-**  use forEach on buttons to run code for all buttons and use an if statement to apply pen colour from button id
-*/
-
-//  Create a grid of 16 x 16 square cells
-//  function to create N divs and append them to grid
-//    give all divs a class of white bg and content "" to display
-
 const gridContainer = document.querySelector("#grid");
+
+function blackPen() {
+  let cells = document.querySelectorAll("#grid div");
+
+  return cells.forEach((div) => {
+    div.addEventListener('mouseover', () => {
+      div.style.cssText = "background-color: black; opacity: 1";
+    })
+  })
+}
 
 // create white cells which change to black on hover
 function addCells(value) {
@@ -29,29 +18,26 @@ function addCells(value) {
         cell.textContent = ""; 
         grid.appendChild(cell); 
 
-    cell.addEventListener('mouseover', () => {
-      cell.style.backgroundColor = "black"; // this event listener overrides any other event listener applied later
-  });
-}
+        blackPen();
+
+    }
 };
 
 addCells(16*16);
 
-// remove all the existing cells
+
 function removeCells() {
   while (grid.firstChild) {
       grid.removeChild(grid.firstChild);
   };
   };
 
-//  set grid template in css to default 16x16
-//    function to change grid template css to user input
 
 function gridTemplate(userInput) {
     grid.style.cssText = `grid-template-columns: repeat(${userInput}, 1fr); grid-template-rows: repeat(${userInput}, 1fr)`;
 };
 
-// function run on the new-grid button
+
 function createNewGrid() {
   let newGrid = 0;
   do {
@@ -65,7 +51,8 @@ function createNewGrid() {
   return addCells(multiply);
 };
 
-// create a random rgb colour
+
+
 function randomRGB() {
   let min = 0;
   let max = 255;
@@ -76,19 +63,10 @@ function randomRGB() {
   console.log(`R${r} G${g} B${b}`)
   return cells.forEach((div) => {
     div.addEventListener('mouseover', () => {
-      div.style.backgroundColor = `rgb(${r} ${g} ${b})`
+      div.style.cssText = `background-color: rgb(${r} ${g} ${b}); opacity: 1`;
     })
   })
 };
-
-function blackPen() {
-  let cells = document.querySelectorAll("#grid div");
-  return cells.forEach((div) => {
-    div.addEventListener('mouseover', () => {
-      div.style.backgroundColor = "black";
-    })
-  })
-}
 
 // click a button to make a black pen, colour pen, or darken pen
 
@@ -107,55 +85,77 @@ buttons.forEach((button) => {
       return randomRGB(); 
     } else if (button.id === "darken") {
       console.log(`${button.id} selected`);
-      return opacityHover();
+      return darken();
+    } else if (button.id === "eraser") {
+      console.log(`${button.id} selected`)
+      return eraser();  
     } else {
       return console.log("error");
     };
   })
 })
 
+function eraser() {
+  let cells = document.querySelectorAll("#grid div");
+  return cells.forEach((div) => {
+    div.addEventListener('mouseover', () => {
+      div.style.cssText = "background-color: white; opacity: 1";
+    })
+  })
+}
 
-function opacityHover() {
+
+function darken() {
 document.querySelectorAll('#grid div').forEach(function (div) {
   div.onmouseover = mouseoverHandler;  
+  div.onmouseout - mouseoutHandler;
   });
 };
 
   function mouseoverHandler(evt) {
     let div = evt.target;
-    div.classList.add('opacity');
+    div.classList.remove('black');
+    div.classList.remove('white');
 
     increaseCounter(div);
-
-    if (div.hoverCounter === 1) {
-      return div.style.opacity = 0.1;
+   
+  if (div.hoverCounter === 1) {
+      return div.style.filter = "brightness(0.9)";
   } else if (div.hoverCounter === 2) {
-      return div.style.opacity = 0.2;
+      return div.style.filter = "brightness(0.8)";
   } else if (div.hoverCounter === 3) {
-      return div.style.opacity = 0.3;
+      return div.style.filter = "brightness(0.7)";
   } else if (div.hoverCounter === 4) {
-      return div.style.opacity = 0.4;
+      return div.style.filter = "brightness(0.6)";
   } else if (div.hoverCounter === 5) {
-      return div.style.opacity = 0.5;
+      return div.style.filter = "brightness(0.5)";
   } else if (div.hoverCounter === 6) {
-      return div.style.opacity = 0.6;
+      return div.style.filter = "brightness(0.4)";
   } else if (div.hoverCounter === 7) {
-      return div.style.opacity = 0.7;
+      return div.style.filter = "brightness(0.3)";
   } else if (div.hoverCounter === 8) {
-      return div.style.opacity = 0.8;
+      return div.style.filter = "brightness(0.2)";
   } else if (div.hoverCounter === 9) {
-      return div.style.opacity = 0.9;
+      return div.style.filter = "brightness(0.1)";
   } else if (div.hoverCounter === 10) {
-      return div.style.opacity = 1;
+      return div.style.filter = "brightness(0)";
   } else {
-  return;
+  return resetCounter(div);
   }
 }
 
-// creater counter property for div hovered on, and increase by one
+
 function increaseCounter(div) {
     div.hoverCounter = div.hoverCounter || 0;
     div.hoverCounter += 1;
-    console.log(div.counter);
+    console.log(div.hoverCounter);
 };
 
+function resetCounter(div) {
+    div.hoverCounter = 0;
+};
+
+function mouseoutHandler(evt) {
+  let div = evt.target;
+  div.classList.remove('opacity');
+};
