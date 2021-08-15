@@ -6,25 +6,30 @@ function addCells(value) {
       // cell refers to newly created div only, not groups of divs
         let cell = document.createElement('div'); 
         cell.classList.add("white");
+        console.log(`${i} cells created with white class`);
         cell.textContent = ""; 
         grid.appendChild(cell); 
 }
-
+console.log("addCells() event listener disabled");
+/*
 let cells = document.querySelectorAll("#grid div");
 
         cells.forEach((div => {
           div.addEventListener('mouseover', () => {
-          console.log("og event listener triggered");
+          console.log("addCells() event listener triggered");
+          console.log("addCells() has applied black bg");
           div.style.backgroundColor = "black";
         })
     }))
-
+*/
 };
 
 addCells(16*16);
+console.log("addCells() has run on page load: grid size is 16x16")
 
 
 function removeCells() {
+  console.log("removeCells() running");
   while (grid.firstChild) {
       grid.removeChild(grid.firstChild);
   };
@@ -32,16 +37,20 @@ function removeCells() {
 
 
 function gridTemplate(userInput) {
+  console.log("gridTemplate() running");
     grid.style.cssText = `grid-template-columns: repeat(${userInput}, 1fr); grid-template-rows: repeat(${userInput}, 1fr)`;
 };
 
 
 function createNewGrid() {
+  console.log("createNewGrid() running");
   let newGrid = 0;
   do {
     newGrid = prompt("Pick a number between 1 and 100 to make a new grid:", 32);
 } while (newGrid >= 100 && newGrid);
+console.log(`newGrid: ${newGrid}`);
 
+console.log("createNewGrid() will now run removeCells()");
   removeCells();
 
   gridTemplate(newGrid);
@@ -51,20 +60,26 @@ function createNewGrid() {
 
 
 function blackPen() {
+  console.log("blackPen() running");
   let cells = document.querySelectorAll("#grid div");
 
   return cells.forEach((div) => {
     div.addEventListener('mouseover', () => {
       div.classList.remove("white");
+      console.log("blackPen() has removed white class");
       div.classList.remove("color");
+      console.log("blackPen() has removed color class");
       div.classList.add("black");
+      console.log("blackPen() has added black class");
       div.style.cssText = "background-color: black; opacity: 1";
+      console.log("blackPen() has applied black bg & opacity: 1")
     })
   })
 }
 
 
 function randomRGB() {
+  console.log("randomRGB() running");
   // TO DO: try HSL instead of RGB to create brighter colours 
   // setting min to 100 makes pastels
   let min = 100;
@@ -73,14 +88,17 @@ function randomRGB() {
   const g = Math.floor(Math.random() * (max - min) + min);
   const b = Math.floor(Math.random() * (max - min) + min);
   let cells = document.querySelectorAll("#grid div")
-  console.log(`R${r} G${g} B${b}`)
+  console.log(`randomRGB() has created: R${r} G${g} B${b}`)
   return cells.forEach((div) => {
     div.addEventListener('mouseover', () => {
       div.classList.remove("white");
+      console.log("randomRGB() has removed white class");
       div.classList.remove("black");
+      console.log("randomRGB() has removed black class");
       div.classList.add("color");
       console.log("color class added");
       div.style.cssText = `background-color: rgb(${r} ${g} ${b}); opacity: 1`;
+      console.log("randomRGB() has applied color bg & opacity: 1");
       // note: use rgba; regex can be used to change alpha value regardless of RGB value
     })
   })
@@ -92,41 +110,53 @@ const buttons = document.querySelectorAll('button');
 
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
+    console.log("button clicked: event listeners for any other button should be disabled")
     if (button.id === "new-grid") {
       console.log(`${button.id} selected`);
       return createNewGrid();
     } else if (button.id === "black") {
-      console.log(`${button.id} selected`);
+      console.log(`${button.id} selected - unbind all other event handlers`);
       return blackPen();
     } else if (button.id === "color") {
-      console.log(`${button.id} selected`);
+      console.log(`${button.id} selected - unbind all other event handlers`);
       return randomRGB(); 
     } else if (button.id === "darken") {
-      console.log(`${button.id} selected`);
+      console.log(`${button.id} selected - unbind all other event handlers. counter active on this pen only`);
       return darken();
     } else if (button.id === "eraser") {
-      console.log(`${button.id} selected`)
+      console.log(`${button.id} selected - unbind all other event handlers`)
       return eraser();  
     } else {
-      return console.log("error");
+      return console.log("error detected in button.forEach method");
     };
   })
 })
 
+// event listeners are remaining active even if another pen is chosen.
+// event listeners need to be either removed or unbound once a different button has been clicked
+// what if we put the event listeners in the button.forEach if statement instead of in separate functions?
+
 function eraser() {
+  console.log("eraser() running");
   let cells = document.querySelectorAll("#grid div");
   return cells.forEach((div) => {
     div.addEventListener('mouseover', () => {
       div.classList.add("white");
+      console.log("eraser() has added white class");
       div.classList.remove("color");
+      console.log("eraser() has removed color class");
       div.classList.remove("black");
+      console.log("eraser() has removed black class");
       div.style.cssText = "background-color: white; opacity: 1; filter: brightness(100)";
+      console.log("eraser() has changed bg to white with opacity 1 & brightness 100");
     })
   })
 }
 
 
 function darken() {
+  console.log("darken() running");
+// tried putting mouseoverHandler directly into darken() function - didn't work
 /*
   let cells = document.querySelectorAll("grid div");
   return cells.forEach((div) => {
@@ -148,7 +178,7 @@ function darken() {
   })
   })
 */
-console.log("mouseoverHandler triggered")
+console.log("darken() mouseoverHandler triggered")
 document.querySelectorAll('#grid div').forEach(function (div) {
   div.onmouseover = mouseoverHandler;  
   // div.onmouseout = mouseoutHandler;
@@ -159,25 +189,28 @@ document.querySelectorAll('#grid div').forEach(function (div) {
 
   function mouseoverHandler(evt) {
     let div = evt.target;
+    console.log("increaseCounter() running");
     increaseCounter(div);
     // if bg color white, add black bg & change opacity
     // if bg color randomgRGB, leave bg & only change brightness
     if (div.classList.contains("white")) {
-      console.log("white bg detected!")
+      console.log("mouseoverHandler detected white class");
       div.classList.remove("color");
-      console.log("color class removed");
+      console.log("mouseoverHandler has removed color class");
+      console.log("mouseoverHandler is running darkenWhite()");
       return darkenWhite(div);
     } else if (div.classList.contains("color")) {
-        console.log("color bg detected!");
+        console.log("mouseoverHandler detected color class");
+        console.log("mouseoverHandler is running darkenColor()");
         return darkenColor(div);
   } else {
-      return console.log("no bg detected")
+      return console.log("mouseoverHandler hasn't detected a class");
   };
 };
 
 
 function darkenColor(div) {
-  console.log("changing brightness");
+  console.log("darkenColor() is changing brightness");
   if (div.hoverCounter === 1) {
     return div.style.filter = "brightness(0.9)";
 } else if (div.hoverCounter === 2) {
@@ -198,17 +231,19 @@ function darkenColor(div) {
     return div.style.filter = "brightness(0.1)";
 } else if (div.hoverCounter === 10) {
     div.classList.add("black");
+    console.log("hover at 10: darkenColor() has added black class");
     div.classList.remove("color");
+    console.log("hover at 10: darkenColor() has removed color class")
     div.style.cssText = "background-color: black; opacity: 1; filter: brightness(0)";
-   return console.log("10th hover - black class added & color removed");
+   return console.log("returning: hover at 10 - darkenColor() has applied black bg, opacity 1, brightness 0");
 } else {
-  console.log("end of if statement")
+  console.log("hovers not counted? end of darkenColor() if statement - applying black bg")
 return div.style.backgroundColor = "black";
 }
 };
 
 function darkenWhite(div) {
-  console.log("changing opacity");
+  console.log("darkenWhite() is changing opacity");
   div.style.backgroundColor = "black";
   if (div.hoverCounter === 1) {
     return div.style.opacity = "0.1";
@@ -230,23 +265,45 @@ function darkenWhite(div) {
     return div.style.opacity = "0.9";
 } else if (div.hoverCounter === 10) {
     div.classList.add("black");
+    console.log("hover at 10: darkenWhite() has added black class")
     div.classList.remove("color");
+    console.log("hover at 10: darkenWhite() has removed color class")
     div.classList.remove("white");
-    return console.log("10th hover - black class added & color removed");
+    console.log("hover at 10: darkenWhite() has removed white class")
+    return console.log("returning: hover at 10: darkenWhite() has added black class & removed white & color classes");
 } else {
 return console.log("hover over 10, counter reset");
 }
 };
 
+// TODO: find a shorter, cleaner way to change opacity/brightness. ^
+
 function increaseCounter(div) {
     div.hoverCounter = div.hoverCounter || 0;
     div.hoverCounter += 1;
-    console.log(div.hoverCounter);
-    // if statement never runs because div.hoverCounter always == itself or 0;
-    // try div.hoverCounter = <10 || 0? NO
-    // try looking it up then idk
+    console.log(`increaseCounter() sets counter to: ${div.hoverCounter}`);
     if (div.hoverCounter > 10) {
-      console.log("counter over 10");
-      div.hoverCounter = 0; // reset counter
+      console.log("counter is higher than 10: increaseCounter() will now resets to 0.");
+      div.hoverCounter = 0;
     };
 };
+
+/* DEBUG:
+breakpoints @ click and mouseover
+A) initial page load w/o clicking a button
+  1. addCells() event listener is triggered
+  2. backgroundColor = "black"
+B) when darken button clicked first
+  1. button.forEach if statement: if new grid-false, if black false, if rgb false, if darken true.
+    1a. console log darken button clicked
+    1b. returns darken()
+  2. darken() runs
+    2a. console log mouseoverHandler triggered
+    2b. cells forEach runs 
+    2c. mouseoverHandler is assigned to hover event 
+    2d. mouseoverHandler runs n times where n is the number of cells currently in the grid (a lot)
+    2e. cells darken on successive hovers as expected
+C) when any other button is clicked then darken is clicked
+  1. 
+
+*/
