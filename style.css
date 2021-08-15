@@ -69,6 +69,11 @@ main {
 .black {
     background-color: black;
     opacity: 1;
+    filter: brightness(0);
+}
+
+.color {
+    opacity: 1;
 }
 
 #credit {
