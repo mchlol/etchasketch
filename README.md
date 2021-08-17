@@ -11,12 +11,16 @@ I'm calling my project "Pixel Sketchpad" because I never had an etchasketch as a
 I've learned:<br>
 <ul>
 <li>More about event listeners - this project uses a click event and mouseover.
-    <li>When the darken pen is clicked, a hover counter is applied to all of the cells. When another pen is clicked, the counter is still running. the event listeners are all firing - black is added, color is added, the counter is increased. this is why the darken function loops when it reached 10, and doesn't work at all once another pen colour has been clicked. Still working on this.</li>
+    <li>An issue: When the darken pen is clicked, a hover counter is applied to all of the cells. When another pen is clicked, the counter is still running. Also, the event listeners are all firing - black is added, color is added, the counter is increased. This is why the darken function loops when it reaches 10, and doesn't work at all once another pen colour has been clicked. Still working on this.</li>
+    <li>I discovered this by using Chrome DevTools debugging combined with a lot of console logging.</li>
+    <li>I decided to finish the project <em>for now</em> without the darken function. I'll try to come back to it in the future when I have more knowledge and experience.</li>
 </li>
-<li>Adding multiple css styles to an element at once - I did this using cssText.</li>
+<li>Adding multiple css styles to an element at once - I did this using cssText. I used this to add a background colour, opacity, and filter brightness.</li>
+<li>I used the worlds longest if statement with duplicate code to run these functions. Bad code practice, but again I hope to come back to it in future when I know better.<li>
 <li>To use git fetch after merging a branch into main!
     <li>Merge the branch</li>
     <li>Run git fetch</li>
     <li>Run git merge</li>
+    This is a problem I had run into before when all my code reverted to some earlier version and I didn't know how to get it back. It just needed to be <em>merged</em>!
 </li>
 </ul>

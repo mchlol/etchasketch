@@ -10,8 +10,8 @@ function addCells(value) {
         cell.textContent = ""; 
         grid.appendChild(cell); 
 }
-console.log("addCells() event listener disabled");
-/*
+console.log("addCells() event listener is enabled");
+
 let cells = document.querySelectorAll("#grid div");
 
         cells.forEach((div => {
@@ -19,9 +19,9 @@ let cells = document.querySelectorAll("#grid div");
           console.log("addCells() event listener triggered");
           console.log("addCells() has applied black bg");
           div.style.backgroundColor = "black";
-        })
+        }, {once : true})
     }))
-*/
+
 };
 
 addCells(16*16);
@@ -134,6 +134,7 @@ buttons.forEach((button) => {
 
 // event listeners are remaining active even if another pen is chosen.
 // event listeners need to be either removed or unbound once a different button has been clicked
+// tried adding 'once' - didn't work
 // what if we put the event listeners in the button.forEach if statement instead of in separate functions?
 
 function eraser() {
