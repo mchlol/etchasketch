@@ -11,6 +11,7 @@ I'm calling my project "Pixel Sketchpad" because I never had an etchasketch as a
 <hr>
 <strong>Update 13 Sep 2021</strong><br>
 I've been taking the <a href="https://beginnerjavascript.com/" target="_blank">Beginner JavaScript</a> course by Wes Bos (excellent), and it gave me an idea. I went back into this project and removed some of those duplicate event listeners (mentioned below), and created an "activePen" variable which sets the background colour on hover. This tidied things up quite a bit. I also worked out a clearAll function, which sets all the current cell backgrounds to white using a forEach method. (Still no luck with the darkening function yet).<br>
+<hr>
 <br>
 I've learned:<br>
 <ul>
