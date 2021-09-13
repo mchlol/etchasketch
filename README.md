@@ -8,6 +8,10 @@ The task is to build an etchasketch-like drawing grid, where the cells change wh
 I'm calling my project "Pixel Sketchpad" because I never had an etchasketch as a kid and I don't know what that is. I had MS Paint and drawing scribbles on deposit slips at the bank.<br>
 <a href="https://mchlol.github.io/etchasketch">Current barebones working version is here.</a>
 <br>
+<hr>
+<strong>Update 13 Sep 2021</strong><br>
+I've been taking the <a href="https://beginnerjavascript.com/" target="_blank">Beginner JavaScript</a> course by Wes Bos (excellent), and it gave me an idea. I went back into this project and removed some of those duplicate event listeners (mentioned below), and created an "activePen" variable which sets the background colour on hover. This tidied things up quite a bit. I also worked out a clearAll function, which sets all the current cell backgrounds to white using a forEach method. (Still no luck with the darkening function yet).<br>
+<br>
 I've learned:<br>
 <ul>
 <li>More about event listeners - this project uses a click event and mouseover.
